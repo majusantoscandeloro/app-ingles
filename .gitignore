@@ -1,0 +1,10 @@
+# Credenciais (nunca versionar)
+service-account*.json
+*-firebase-adminsdk-*.json
+.env
+.env.*
+
+node_modules/
+.firebase/
+firebase-debug.log
+firestore-debug.log

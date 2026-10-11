@@ -1,0 +1,85 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Definido via custom claim (tools/firebase-admin/set-admin.mjs), nunca pelo app.
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function readableContent() {
+      return isAdmin() || (signedIn() && resource.data.active == true);
+    }
+
+    // ---------- Conteúdo pedagógico (somente o painel/admin escreve) ----------
+
+    match /courses/{id} {
+      allow read: if readableContent();
+      allow write: if isAdmin();
+    }
+
+    match /units/{id} {
+      allow read: if readableContent();
+      allow write: if isAdmin();
+    }
+
+    match /lessons/{id} {
+      allow read: if readableContent();
+      allow write: if isAdmin();
+    }
+
+    match /exercises/{id} {
+      allow read: if readableContent();
+      allow write: if isAdmin();
+    }
+
+    // ---------- Dados do aluno ----------
+
+    function validProfile(data) {
+      return data.name is string && data.name.size() <= 80
+        && data.xp is int && data.xp >= 0
+        && data.hearts is int && data.hearts >= 0 && data.hearts <= 5
+        && data.currentStreak is int && data.currentStreak >= 0;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid)
+        && validProfile(request.resource.data)
+        && !('role' in request.resource.data);
+      allow update: if isOwner(uid)
+        && validProfile(request.resource.data)
+        && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'createdAt', 'email'])
+        && request.resource.data.xp >= resource.data.xp;
+      allow delete: if false;
+
+      match /progress/{lessonId} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow write: if isOwner(uid)
+          && request.resource.data.lessonId == lessonId
+          && request.resource.data.bestScore is int
+          && request.resource.data.bestScore >= 0
+          && request.resource.data.bestScore <= 100;
+      }
+
+      match /errors/{exerciseId} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow write: if isOwner(uid);
+      }
+    }
+
+    // Consultas collectionGroup do painel (progresso de todos os alunos).
+    match /{path=**}/progress/{lessonId} {
+      allow read: if isAdmin();
+    }
+  }
+}

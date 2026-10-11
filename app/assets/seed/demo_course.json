@@ -1,0 +1,72 @@
+{
+  "courses": [
+    { "id": "basic_english", "title": "Inglês Básico", "description": "Primeiros passos no inglês do dia a dia.", "level": "A1", "order": 1, "active": true }
+  ],
+  "units": [
+    { "id": "u1", "courseId": "basic_english", "title": "Primeiros passos", "description": "Cumprimentos e cortesia", "order": 1, "active": true },
+    { "id": "u2", "courseId": "basic_english", "title": "Apresentações", "description": "Nome, origem e onde você mora", "order": 2, "active": true }
+  ],
+  "lessons": [
+    { "id": "u1_l1", "unitId": "u1", "courseId": "basic_english", "title": "Cumprimentos", "description": "Hello, good morning, good night...", "order": 1, "xp": 20, "kind": "STANDARD", "active": true },
+    { "id": "u1_l2", "unitId": "u1", "courseId": "basic_english", "title": "Cortesia", "description": "Thank you, please, goodbye...", "order": 2, "xp": 20, "kind": "LISTENING", "active": true },
+    { "id": "u1_l3", "unitId": "u1", "courseId": "basic_english", "title": "Como você está?", "description": "Pergunte e responda como está.", "order": 3, "xp": 20, "kind": "SPEAKING", "active": true },
+    { "id": "u2_l1", "unitId": "u2", "courseId": "basic_english", "title": "Meu nome é...", "description": "Apresente-se em inglês.", "order": 1, "xp": 20, "kind": "STANDARD", "active": true },
+    { "id": "u2_l2", "unitId": "u2", "courseId": "basic_english", "title": "De onde você é?", "description": "I am from...", "order": 2, "xp": 20, "kind": "LISTENING", "active": true },
+    { "id": "u2_l3", "unitId": "u2", "courseId": "basic_english", "title": "Onde você mora?", "description": "Desafio final da unidade.", "order": 3, "xp": 30, "kind": "CHALLENGE", "active": true }
+  ],
+  "exercises": [
+    { "id": "u1_l1_e1", "lessonId": "u1_l1", "order": 1, "type": "MULTIPLE_CHOICE", "question": "O que significa \"Hello\"?", "audioText": "Hello", "options": ["Olá", "Tchau", "Obrigado", "Por favor"], "correctAnswer": "Olá", "xp": 10, "active": true },
+    { "id": "u1_l1_e2", "lessonId": "u1_l1", "order": 2, "type": "LISTEN", "audioText": "Good morning", "options": ["Bom dia", "Boa noite", "Boa tarde", "Olá"], "correctAnswer": "Bom dia", "xp": 10, "active": true },
+    { "id": "u1_l1_e3", "lessonId": "u1_l1", "order": 3, "type": "FILL_BLANK", "instruction": "Complete: \"Bom dia!\"", "question": "Good ___!", "options": ["morning", "night", "afternoon", "evening"], "correctAnswer": "morning", "xp": 10, "active": true },
+    { "id": "u1_l1_e4", "lessonId": "u1_l1", "order": 4, "type": "IMAGE_SELECTION", "question": "Qual imagem representa \"Good night\"?", "options": [{ "text": "Good night", "emoji": "🌙" }, { "text": "Good morning", "emoji": "🌅" }, { "text": "Good afternoon", "emoji": "☀️" }, { "text": "Hello", "emoji": "👋" }], "correctAnswer": "Good night", "xp": 10, "active": true },
+    { "id": "u1_l1_e5", "lessonId": "u1_l1", "order": 5, "type": "TRANSLATION", "question": "Boa tarde!", "correctAnswer": "Good afternoon!", "xp": 10, "active": true },
+    { "id": "u1_l1_e6", "lessonId": "u1_l1", "order": 6, "type": "WORD_ORDER", "question": "Olá, bom dia!", "words": ["Hello", "good", "morning", "night"], "correctAnswer": "Hello, good morning!", "xp": 10, "active": true },
+    { "id": "u1_l1_e7", "lessonId": "u1_l1", "order": 7, "type": "SPEAK", "question": "Good morning!", "correctAnswer": "Good morning", "xp": 10, "active": true },
+    { "id": "u1_l1_e8", "lessonId": "u1_l1", "order": 8, "type": "MULTIPLE_CHOICE", "question": "Como dizer \"Boa noite\" ao se despedir?", "options": ["Good night", "Good morning", "Hello", "Good afternoon"], "correctAnswer": "Good night", "explanation": "\"Good evening\" é usado ao chegar; \"Good night\" ao se despedir.", "xp": 10, "active": true },
+
+    { "id": "u1_l2_e1", "lessonId": "u1_l2", "order": 1, "type": "MULTIPLE_CHOICE", "question": "O que significa \"Thank you\"?", "audioText": "Thank you", "options": ["Obrigado(a)", "Por favor", "Desculpe", "De nada"], "correctAnswer": "Obrigado(a)", "xp": 10, "active": true },
+    { "id": "u1_l2_e2", "lessonId": "u1_l2", "order": 2, "type": "LISTEN", "audioText": "Please", "options": ["Por favor", "Obrigado", "Tchau", "Desculpe"], "correctAnswer": "Por favor", "xp": 10, "active": true },
+    { "id": "u1_l2_e3", "lessonId": "u1_l2", "order": 3, "type": "LISTEN", "instruction": "Digite o que você ouviu", "audioText": "Goodbye", "correctAnswer": "Goodbye", "acceptedAnswers": ["Good bye", "Good-bye"], "xp": 10, "active": true },
+    { "id": "u1_l2_e4", "lessonId": "u1_l2", "order": 4, "type": "FILL_BLANK", "instruction": "Complete: \"Muito obrigado!\"", "question": "Thank you very ___!", "options": ["much", "many", "more", "good"], "correctAnswer": "much", "xp": 10, "active": true },
+    { "id": "u1_l2_e5", "lessonId": "u1_l2", "order": 5, "type": "TRANSLATION", "question": "De nada.", "correctAnswer": "You're welcome.", "acceptedAnswers": ["You are welcome"], "xp": 10, "active": true },
+    { "id": "u1_l2_e6", "lessonId": "u1_l2", "order": 6, "type": "IMAGE_SELECTION", "question": "Qual imagem representa \"Goodbye\"?", "options": [{ "text": "Goodbye", "emoji": "👋" }, { "text": "Thank you", "emoji": "🙏" }, { "text": "Good night", "emoji": "🌙" }, { "text": "Good morning", "emoji": "🌅" }], "correctAnswer": "Goodbye", "xp": 10, "active": true },
+    { "id": "u1_l2_e7", "lessonId": "u1_l2", "order": 7, "type": "WORD_ORDER", "question": "Muito obrigado!", "words": ["Thank", "you", "very", "much", "many"], "correctAnswer": "Thank you very much!", "xp": 10, "active": true },
+    { "id": "u1_l2_e8", "lessonId": "u1_l2", "order": 8, "type": "SPEAK", "question": "Thank you very much!", "correctAnswer": "Thank you very much", "xp": 10, "active": true },
+
+    { "id": "u1_l3_e1", "lessonId": "u1_l3", "order": 1, "type": "MULTIPLE_CHOICE", "question": "O que significa \"How are you?\"", "audioText": "How are you?", "options": ["Como você está?", "Quem é você?", "Onde você está?", "Quantos anos você tem?"], "correctAnswer": "Como você está?", "xp": 10, "active": true },
+    { "id": "u1_l3_e2", "lessonId": "u1_l3", "order": 2, "type": "LISTEN", "audioText": "I'm fine, thank you.", "options": ["Estou bem, obrigado.", "Estou cansado.", "Eu sou o Pedro.", "Tudo bem, e você?"], "correctAnswer": "Estou bem, obrigado.", "xp": 10, "active": true },
+    { "id": "u1_l3_e3", "lessonId": "u1_l3", "order": 3, "type": "FILL_BLANK", "instruction": "Complete: \"Eu estou bem.\"", "question": "I ___ fine.", "options": ["am", "is", "are", "be"], "correctAnswer": "am", "explanation": "Com \"I\" usamos sempre \"am\".", "xp": 10, "active": true },
+    { "id": "u1_l3_e4", "lessonId": "u1_l3", "order": 4, "type": "WORD_ORDER", "question": "Como você está?", "words": ["How", "are", "you", "is", "do"], "correctAnswer": "How are you?", "xp": 10, "active": true },
+    { "id": "u1_l3_e5", "lessonId": "u1_l3", "order": 5, "type": "TRANSLATION", "question": "Eu estou bem.", "correctAnswer": "I am fine.", "acceptedAnswers": ["I am good", "I am well", "I'm fine", "I'm good"], "xp": 10, "active": true },
+    { "id": "u1_l3_e6", "lessonId": "u1_l3", "order": 6, "type": "SPEAK", "question": "How are you?", "correctAnswer": "How are you", "xp": 10, "active": true },
+    { "id": "u1_l3_e7", "lessonId": "u1_l3", "order": 7, "type": "SPEAK", "question": "I'm fine, thank you.", "correctAnswer": "I'm fine, thank you", "acceptedAnswers": ["I'm fine thanks"], "xp": 10, "active": true },
+    { "id": "u1_l3_e8", "lessonId": "u1_l3", "order": 8, "type": "MULTIPLE_CHOICE", "question": "Qual é uma boa resposta para \"How are you?\"", "options": ["I'm fine, thanks!", "My name is Ana.", "I'm from Brazil.", "Good night!"], "correctAnswer": "I'm fine, thanks!", "xp": 10, "active": true },
+
+    { "id": "u2_l1_e1", "lessonId": "u2_l1", "order": 1, "type": "MULTIPLE_CHOICE", "question": "O que significa \"What is your name?\"", "audioText": "What is your name?", "options": ["Qual é o seu nome?", "Como você está?", "De onde você é?", "Onde você mora?"], "correctAnswer": "Qual é o seu nome?", "xp": 10, "active": true },
+    { "id": "u2_l1_e2", "lessonId": "u2_l1", "order": 2, "type": "FILL_BLANK", "instruction": "Complete: \"Meu nome é Ana.\"", "question": "My ___ is Ana.", "options": ["name", "names", "is", "am"], "correctAnswer": "name", "xp": 10, "active": true },
+    { "id": "u2_l1_e3", "lessonId": "u2_l1", "order": 3, "type": "LISTEN", "audioText": "My name is Lucas.", "options": ["Meu nome é Lucas.", "Eu moro com o Lucas.", "Eu sou amigo do Lucas.", "Lucas é meu professor."], "correctAnswer": "Meu nome é Lucas.", "xp": 10, "active": true },
+    { "id": "u2_l1_e4", "lessonId": "u2_l1", "order": 4, "type": "WORD_ORDER", "question": "Meu nome é Pedro.", "words": ["My", "name", "is", "Pedro", "am"], "correctAnswer": "My name is Pedro.", "xp": 10, "active": true },
+    { "id": "u2_l1_e5", "lessonId": "u2_l1", "order": 5, "type": "TRANSLATION", "question": "Prazer em conhecer você.", "correctAnswer": "Nice to meet you.", "acceptedAnswers": ["Pleased to meet you", "It's nice to meet you"], "xp": 10, "active": true },
+    { "id": "u2_l1_e6", "lessonId": "u2_l1", "order": 6, "type": "IMAGE_SELECTION", "question": "Qual imagem representa \"teacher\"?", "options": [{ "text": "teacher", "emoji": "👩‍🏫" }, { "text": "student", "emoji": "🧑‍🎓" }, { "text": "doctor", "emoji": "🧑‍⚕️" }, { "text": "family", "emoji": "👨‍👩‍👧" }], "correctAnswer": "teacher", "xp": 10, "active": true },
+    { "id": "u2_l1_e7", "lessonId": "u2_l1", "order": 7, "type": "SPEAK", "question": "My name is Ana.", "correctAnswer": "My name is Ana", "xp": 10, "active": true },
+    { "id": "u2_l1_e8", "lessonId": "u2_l1", "order": 8, "type": "MULTIPLE_CHOICE", "question": "Como responder \"Nice to meet you\"?", "options": ["Nice to meet you too!", "Good night!", "I'm from Brazil.", "Thank you very much."], "correctAnswer": "Nice to meet you too!", "xp": 10, "active": true },
+
+    { "id": "u2_l2_e1", "lessonId": "u2_l2", "order": 1, "type": "MULTIPLE_CHOICE", "question": "O que significa \"Where are you from?\"", "audioText": "Where are you from?", "options": ["De onde você é?", "Onde você mora?", "Qual o seu nome?", "Como você está?"], "correctAnswer": "De onde você é?", "xp": 10, "active": true },
+    { "id": "u2_l2_e2", "lessonId": "u2_l2", "order": 2, "type": "LISTEN", "audioText": "I am from Brazil.", "options": ["Eu sou do Brasil.", "Eu moro no Brasil.", "Eu amo o Brasil.", "Eu vou ao Brasil."], "correctAnswer": "Eu sou do Brasil.", "xp": 10, "active": true },
+    { "id": "u2_l2_e3", "lessonId": "u2_l2", "order": 3, "type": "FILL_BLANK", "instruction": "Complete: \"Eu sou do Brasil.\"", "question": "I am ___ Brazil.", "options": ["from", "in", "of", "to"], "correctAnswer": "from", "xp": 10, "active": true },
+    { "id": "u2_l2_e4", "lessonId": "u2_l2", "order": 4, "type": "FILL_BLANK", "instruction": "Complete: \"Eu sou brasileiro(a).\"", "question": "I ___ Brazilian.", "options": ["am", "is", "are", "be"], "correctAnswer": "am", "xp": 10, "active": true },
+    { "id": "u2_l2_e5", "lessonId": "u2_l2", "order": 5, "type": "IMAGE_SELECTION", "question": "Qual bandeira representa \"the United States\"?", "options": [{ "text": "the United States", "emoji": "🇺🇸" }, { "text": "Brazil", "emoji": "🇧🇷" }, { "text": "Canada", "emoji": "🇨🇦" }, { "text": "Portugal", "emoji": "🇵🇹" }], "correctAnswer": "the United States", "xp": 10, "active": true },
+    { "id": "u2_l2_e6", "lessonId": "u2_l2", "order": 6, "type": "TRANSLATION", "question": "Eu sou brasileiro.", "correctAnswer": "I am Brazilian.", "acceptedAnswers": ["I'm Brazilian"], "xp": 10, "active": true },
+    { "id": "u2_l2_e7", "lessonId": "u2_l2", "order": 7, "type": "LISTEN", "instruction": "Digite o que você ouviu", "audioText": "Where are you from?", "correctAnswer": "Where are you from?", "xp": 10, "active": true },
+    { "id": "u2_l2_e8", "lessonId": "u2_l2", "order": 8, "type": "SPEAK", "question": "I am from Brazil.", "correctAnswer": "I am from Brazil", "xp": 10, "active": true },
+
+    { "id": "u2_l3_e1", "lessonId": "u2_l3", "order": 1, "type": "MULTIPLE_CHOICE", "question": "O que significa \"Where do you live?\"", "audioText": "Where do you live?", "options": ["Onde você mora?", "De onde você é?", "Onde você trabalha?", "Onde você estuda?"], "correctAnswer": "Onde você mora?", "xp": 10, "active": true },
+    { "id": "u2_l3_e2", "lessonId": "u2_l3", "order": 2, "type": "FILL_BLANK", "instruction": "Complete: \"Eu moro em São Paulo.\"", "question": "I live ___ São Paulo.", "options": ["in", "on", "at", "from"], "correctAnswer": "in", "explanation": "Usamos \"in\" para cidades e países.", "xp": 10, "active": true },
+    { "id": "u2_l3_e3", "lessonId": "u2_l3", "order": 3, "type": "WORD_ORDER", "question": "Eu moro no Brasil.", "words": ["I", "live", "in", "Brazil", "from"], "correctAnswer": "I live in Brazil.", "xp": 10, "active": true },
+    { "id": "u2_l3_e4", "lessonId": "u2_l3", "order": 4, "type": "LISTEN", "audioText": "I live in a big city.", "options": ["Eu moro em uma cidade grande.", "Eu moro em uma casa grande.", "Eu gosto da cidade grande.", "Eu sou de uma cidade pequena."], "correctAnswer": "Eu moro em uma cidade grande.", "xp": 10, "active": true },
+    { "id": "u2_l3_e5", "lessonId": "u2_l3", "order": 5, "type": "TRANSLATION", "question": "Onde você mora?", "correctAnswer": "Where do you live?", "xp": 10, "active": true },
+    { "id": "u2_l3_e6", "lessonId": "u2_l3", "order": 6, "type": "IMAGE_SELECTION", "question": "Qual imagem representa \"house\"?", "options": [{ "text": "house", "emoji": "🏠" }, { "text": "city", "emoji": "🏙️" }, { "text": "school", "emoji": "🏫" }, { "text": "beach", "emoji": "🏖️" }], "correctAnswer": "house", "xp": 10, "active": true },
+    { "id": "u2_l3_e7", "lessonId": "u2_l3", "order": 7, "type": "SPEAK", "question": "I live in Brazil.", "correctAnswer": "I live in Brazil", "xp": 10, "active": true },
+    { "id": "u2_l3_e8", "lessonId": "u2_l3", "order": 8, "type": "WORD_ORDER", "question": "Olá, meu nome é Ana e eu sou do Brasil.", "words": ["Hello", "my", "name", "is", "Ana", "and", "I", "am", "from", "Brazil"], "correctAnswer": "Hello, my name is Ana and I am from Brazil.", "xp": 10, "active": true }
+  ]
+}

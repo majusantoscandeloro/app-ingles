@@ -1,0 +1,13 @@
+{
+  "name": "livia-ingles-firebase-admin",
+  "private": true,
+  "type": "module",
+  "description": "Scripts administrativos (rodar localmente, nunca no app).",
+  "scripts": {
+    "seed": "node seed.mjs",
+    "set-admin": "node set-admin.mjs"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.0"
+  }
+}
