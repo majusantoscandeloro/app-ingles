@@ -46,14 +46,15 @@ String normalizeAnswer(String input) {
   return text.replaceAll("'", '').replaceAll(RegExp(r'\s+'), ' ').trim();
 }
 
-int levenshtein(List<Object> a, List<Object> b) {
+int levenshtein(List<Object> a, List<Object> b, {bool Function(Object a, Object b)? equals}) {
   if (a.isEmpty) return b.length;
   if (b.isEmpty) return a.length;
+  bool same(Object x, Object y) => equals?.call(x, y) ?? x == y;
   var previous = List<int>.generate(b.length + 1, (i) => i);
   for (var i = 1; i <= a.length; i++) {
     final current = List<int>.filled(b.length + 1, 0)..[0] = i;
     for (var j = 1; j <= b.length; j++) {
-      final cost = a[i - 1] == b[j - 1] ? 0 : 1;
+      final cost = same(a[i - 1], b[j - 1]) ? 0 : 1;
       current[j] = math.min(
         math.min(current[j - 1] + 1, previous[j] + 1),
         previous[j - 1] + cost,
@@ -64,13 +65,34 @@ int levenshtein(List<Object> a, List<Object> b) {
   return previous[b.length];
 }
 
+/// Remove consoantes repetidas em sequência (`anna` → `ana`).
+/// Vogais dobradas ficam, para `good` não virar `god`.
+String withoutRepeatedConsonants(String word) {
+  if (word.isEmpty) return word;
+  final buffer = StringBuffer(word[0]);
+  for (var i = 1; i < word.length; i++) {
+    final repeatedConsonant = word[i] == word[i - 1] && !'aeiou'.contains(word[i]);
+    if (!repeatedConsonant) buffer.write(word[i]);
+  }
+  return buffer.toString();
+}
+
+bool sameSpokenWord(String a, String b) => a == b || withoutRepeatedConsonants(a) == withoutRepeatedConsonants(b);
+
 /// Similaridade (0–1) por palavras, usada na comparação de fala.
-double wordSimilarity(String a, String b) {
+double wordSimilarity(String a, String b) => _tokenSimilarity(a, b);
+
+/// Igual a [wordSimilarity], mas aceita consoante dobrada pelo reconhecedor
+/// (`Ana` ouvida como `Anna`).
+double spokenSimilarity(String a, String b) =>
+    _tokenSimilarity(a, b, equals: (x, y) => sameSpokenWord(x as String, y as String));
+
+double _tokenSimilarity(String a, String b, {bool Function(Object, Object)? equals}) {
   final wa = a.isEmpty ? <String>[] : a.split(' ');
   final wb = b.isEmpty ? <String>[] : b.split(' ');
   final longest = math.max(wa.length, wb.length);
   if (longest == 0) return 1;
-  return 1 - levenshtein(wa, wb) / longest;
+  return 1 - levenshtein(wa, wb, equals: equals) / longest;
 }
 
 int charDistance(String a, String b) => levenshtein(a.split(''), b.split(''));

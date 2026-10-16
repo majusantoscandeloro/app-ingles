@@ -36,7 +36,7 @@ class AnswerChecker {
 
     switch (exercise.type) {
       case ExerciseType.speak:
-        final best = accepted.map((a) => wordSimilarity(normalized, a)).fold<double>(0, (m, s) => s > m ? s : m);
+        final best = accepted.map((a) => spokenSimilarity(normalized, a)).fold<double>(0, (m, s) => s > m ? s : m);
         final verdict = best >= speakCorrectThreshold
             ? AnswerVerdict.correct
             : best >= speakAlmostThreshold

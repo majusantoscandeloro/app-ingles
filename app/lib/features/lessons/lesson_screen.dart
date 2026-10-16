@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/providers.dart';
 import '../../core/services/analytics_service.dart';
+import '../../core/services/sound_effects.dart';
 import '../../core/theme/app_colors.dart';
 import '../../shared/models/course.dart';
 import '../../shared/models/exercise.dart';
@@ -75,6 +76,8 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
   bool _saving = false;
   Object? _saveError;
   String? _completedUnitTitle;
+  CheckState? _lastFeedback;
+  bool _playedLose = false;
 
   @override
   void initState() {
@@ -154,6 +157,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
       gamification: ref.read(gamificationServiceProvider),
       onHeartLost: (h) => repo.updateHearts(uid, hearts: h.hearts, anchor: h.anchor),
       onAnswered: (exercise, correct) {
+        ref.read(soundEffectsProvider).play(correct ? SoundEffect.correct : SoundEffect.wrong);
         correct ? HapticFeedback.lightImpact() : HapticFeedback.heavyImpact();
         analytics.log(
           correct ? AnalyticsEvents.exerciseCorrect : AnalyticsEvents.exerciseWrong,
@@ -168,6 +172,14 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
       },
     );
     controller.addListener(() {
+      if (controller.state == CheckState.retry && _lastFeedback != CheckState.retry) {
+        ref.read(soundEffectsProvider).play(SoundEffect.almost);
+      }
+      _lastFeedback = controller.state;
+      if (controller.phase == SessionPhase.outOfHearts && !_playedLose) {
+        _playedLose = true;
+        ref.read(soundEffectsProvider).play(SoundEffect.lose);
+      }
       if (controller.phase != SessionPhase.playing && _summary == null && !_saving) _finish();
     });
     return controller;
@@ -211,7 +223,13 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
           ref.read(analyticsProvider).log(AnalyticsEvents.unitCompleted, {'unitId': unit.unit.id});
         }
       }
-      if (mounted) setState(() => _summary = summary);
+      if (mounted) {
+        setState(() => _summary = summary);
+        if (summary.completed) {
+          final celebrate = summary.perfect || _completedUnitTitle != null;
+          ref.read(soundEffectsProvider).play(celebrate ? SoundEffect.perfect : SoundEffect.win);
+        }
+      }
     } catch (e) {
       if (mounted) setState(() => _saveError = e);
     } finally {

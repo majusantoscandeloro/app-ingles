@@ -71,5 +71,16 @@ void main() {
     test('frase diferente é incorreta', () {
       expect(checker.check(e, 'good morning').verdict, AnswerVerdict.incorrect);
     });
+
+    test('reconhecedor que dobra consoante em nome ainda conta como certo', () {
+      final name = _exercise(ExerciseType.speak, 'My name is Ana');
+      expect(checker.check(name, 'My name is Anna').verdict, AnswerVerdict.correct);
+    });
+
+    test('palavra parecida que não é letra dobrada continua errada', () {
+      final live = _exercise(ExerciseType.speak, 'I live in Brazil');
+      expect(checker.check(live, 'I love in Brazil').verdict, isNot(AnswerVerdict.correct));
+      expect(checker.check(_exercise(ExerciseType.speak, 'Good morning'), 'God morning').verdict, isNot(AnswerVerdict.correct));
+    });
   });
 }

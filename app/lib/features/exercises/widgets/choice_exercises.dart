@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -5,6 +7,14 @@ import '../../../core/providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../shared/models/exercise.dart';
 import 'exercise_common.dart';
+
+/// A resposta certa costuma vir primeiro no conteúdo. A ordem na tela é
+/// embaralhada com semente fixa, então não muda no meio do exercício.
+List<ExerciseOption> stableOptionOrder(Exercise exercise) {
+  final options = [...exercise.options];
+  if (options.length > 1) options.shuffle(math.Random(exercise.id.hashCode));
+  return options;
+}
 
 class _OptionList extends StatelessWidget {
   const _OptionList({required this.options, required this.selected, required this.locked, required this.onSelect});
@@ -97,7 +107,7 @@ class _MultipleChoiceExerciseState extends _ChoiceState<MultipleChoiceExercise> 
         ),
         const SizedBox(height: 24),
         _OptionList(
-          options: e.options,
+          options: stableOptionOrder(e),
           selected: selected,
           locked: widget.locked,
           onSelect: (v) => select(v, widget.onChanged),
@@ -152,7 +162,7 @@ class _FillBlankExerciseState extends _ChoiceState<FillBlankExercise> {
           runSpacing: 12,
           alignment: WrapAlignment.center,
           children: [
-            for (final option in widget.exercise.options)
+            for (final option in stableOptionOrder(widget.exercise))
               ChoiceTile(
                 selected: selected == option.text,
                 onTap: widget.locked ? null : () => select(option.text, widget.onChanged),
@@ -195,7 +205,7 @@ class _ImageSelectionExerciseState extends _ChoiceState<ImageSelectionExercise> 
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
               children: [
-                for (final option in e.options)
+                for (final option in stableOptionOrder(e))
                   ChoiceTile(
                     selected: selected == option.text,
                     onTap: widget.locked ? null : () => select(option.text, widget.onChanged),
@@ -263,7 +273,7 @@ class _ListeningExerciseState extends ConsumerState<ListeningExercise> {
         const SizedBox(height: 28),
         if (e.options.isNotEmpty)
           _OptionList(
-            options: e.options,
+            options: stableOptionOrder(e),
             selected: _selected,
             locked: widget.locked,
             onSelect: (v) {

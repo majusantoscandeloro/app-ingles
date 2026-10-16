@@ -17,6 +17,7 @@ import '../features/exercises/answer_checker.dart';
 import '../features/gamification/gamification_service.dart';
 import 'config/app_config.dart';
 import 'services/analytics_service.dart';
+import 'services/sound_effects.dart';
 import 'services/speech_service.dart';
 import 'services/tts_service.dart';
 
@@ -52,6 +53,12 @@ final ttsServiceProvider = Provider<TtsService>((ref) {
   final tts = TtsService();
   ref.onDispose(tts.stop);
   return tts;
+});
+
+final soundEffectsProvider = Provider<SoundEffects>((ref) {
+  final sounds = SoundEffects();
+  ref.onDispose(sounds.dispose);
+  return sounds;
 });
 
 final speechServiceProvider = Provider<SpeechService>((ref) => SpeechService());
